@@ -8,9 +8,9 @@ $dbName = $databaseConfig['DB_NAME'];
 $dbUser = $databaseConfig['DB_USER'];
 $dbPass = $databaseConfig['DB_PASS'];
 
-try {
+try { // Connexion à la base de données
     $bdd = new PDO("mysql:host=$dbHost;dbname=$dbName;charset=utf8", $dbUser, $dbPass);
-} catch (Exception $e) {
+} catch (Exception $e) { // En cas d'erreur, afficher un message et arrêter tout
     die('Erreur : ' . $e->getMessage());
 }
 ?>
