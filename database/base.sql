@@ -1,0 +1,132 @@
+-- Nom de la base : dbPtitCuisto
+-- Projet : PtitCuisto
+-- Auteur : SquidGame
+-- ----------------------------------------------------
+
+DROP TABLE COMMENTAIRE CASCADE CONSTRAINTS;
+
+DROP TABLE RECETTE CASCADE CONSTRAINTS;
+
+DROP TABLE UTILISATEUR CASCADE CONSTRAINTS;
+
+DROP TABLE CATEGORIE CASCADE CONSTRAINTS;
+
+DROP TABLE INGREDIENT CASCADE CONSTRAINTS;
+
+-- ----------------------------------------------------
+-- CREATION DE LA BASE
+-- ----------------------------------------------------
+
+CREATE DATABASE PTIT_CUISTO;
+
+-- ----------------------------------------------------
+-- TABLE : COMMENTAIRE
+-- ----------------------------------------------------
+
+CREATE TABLE COMMENTAIRE
+(
+    COM_ID NUMBER(5) NOT NULL,
+    COM_CONTENU VARCHAR2(255) NOT NULL,
+    COM_USER NUMBER(7) NOT NULL,
+    CONSTRAINT PK_COMMENTAIRE PRIMARY KEY (COM_ID)
+);
+
+-- ----------------------------------------------------
+-- TABLE : RECETTE
+-- ----------------------------------------------------
+
+CREATE TABLE RECETTE
+(
+    RC_ID NUMBER(7) NOT NULL,
+    RC_TITRE VARCHAR2(100) NOT NULL,
+    RC_CONTENU VARCHAR2(100) NOT NULL,
+    RC_RESUME VARCHAR2(100) NOT NULL,
+    RC_CATEGORIE NUMBER(2) NOT NULL,
+    RC_RECETTE_DATE_INSCRIPTION DATE NOT NULL,
+    RC_IMAGE VARCHAR2(100) NOT NULL,
+    RC_RECETTE_DATE_CREATION DATE NOT NULL,
+    RC_RECETTE_DATE_MODIFICATION DATE NOT NULL,
+    RC_AUTEUR NUMBER(7) NOT NULL,
+    CONSTRAINT PK_RECETTE PRIMARY KEY (RC_ID),
+);
+
+-- ----------------------------------------------------
+-- TABLE : UTILISATEUR
+-- ----------------------------------------------------
+
+CREATE TABLE UTILISATEUR
+(
+    USR_ID NUMBER(7) NOT NULL,
+    USR_PSEUDO VARCHAR2(32) NOT NULL,
+    USR_EMAIL VARCHAR2(32) NULL,
+    USR_PRENOM VARCHAR2(32) NOT NULL,
+    USR_NOM VARCHAR2(32) NULL,
+    USR_DATE_INSCRIPTION DATE NOT NULL,
+    USR_TYPE NUMBER(2) NOT NULL,
+    USR_STATUT NUMBER(2) NOT NULL,
+    USR_PASSWORD VARCHAR2(32) NOT NULL,
+    CONSTRAINT PK_UTILISATEUR PRIMARY KEY (USR_ID)
+);
+
+-- ----------------------------------------------------
+-- TABLE : CATEGORIE
+-- ----------------------------------------------------
+
+CREATE TABLE CATEGORIE
+(
+    CAT_ID NUMBER(2) NOT NULL,
+    CAT_INTITULE VARCHAR2(255) NOT NULL,
+    CAT_DESC VARCHAR2(255) NOT NULL,
+    CONSTRAINT PK_CATEGORIE PRIMARY KEY (CAT_ID)
+);
+
+-- ----------------------------------------------------
+-- TABLE : INGREDIENT
+-- ----------------------------------------------------
+
+CREATE TABLE INGREDIENT
+(
+    INGR_ID NUMBER(5) NOT NULL,
+    INGR_INTITULE VARCHAR2(100) NOT NULL,
+    INGR_DESC VARCHAR2(100) NOT NULL,
+    CONSTRAINT PK_INGREDIENT PRIMARY KEY (INGR_ID)
+);
+
+-- ----------------------------------------------------
+-- TABLE : RECETTE_INGREDIENT
+-- ----------------------------------------------------
+
+CREATE TABLE RECETTE_INGREDIENT
+(
+    RI_ID NUMBER(7) NOT NULL,
+    RI_RECETTE NUMBER(7) NOT NULL,
+    RI_INGREDIENT NUMBER(5) NOT NULL,
+    RI_QUANTITE NUMBER(5) NOT NULL,
+    CONSTRAINT PK_RECETTE_INGREDIENT PRIMARY KEY (RI_ID),
+    CONSTRAINT FK_RI_RECETTE FOREIGN KEY (RI_RECETTE) REFERENCES RECETTE (RC_ID),
+    CONSTRAINT FK_RI_INGREDIENT FOREIGN KEY (RI_INGREDIENT) REFERENCES INGREDIENT (INGR_ID)
+);
+
+-- ----------------------------------------------------
+-- CREATION DES REFERENCES DE TABLE
+-- ----------------------------------------------------
+
+ALTER TABLE COMMENTAIRE
+ADD CONSTRAINT FK_COMMENTAIRE_RECETTE
+FOREIGN KEY (COMM_ID) REFERENCES RECETTE (RC_ID);
+
+ALTER TABLE RECETTE
+ADD CONSTRAINT FK_RC_CATEGORIE
+FOREIGN KEY (RC_CATEGORIE) REFERENCES CATEGORIE (CAT_ID);
+
+ALTER TABLE RECETTE
+ADD CONSTRAINT FK_RC_AUTEUR
+FOREIGN KEY (RC_AUTEUR) REFERENCES UTILISATEUR (USR_ID);
+
+ALTER TABLE COMMENTAIRE
+ADD CONSTRAINT FK_COMMENTAIRE_UTILISATEUR
+FOREIGN KEY (COM_USER) REFERENCES UTILISATEUR (USR_ID);
+
+-- ----------------------------------------------------
+-- FIN DE GENERATION
+-- ----------------------------------------------------
