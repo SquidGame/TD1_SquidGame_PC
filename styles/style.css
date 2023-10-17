@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.latest-recipes, .edito-container {
+    width: 50%;
+    margin: 1rem;
+    border: 1px solid #7890cd;
+    padding: 1rem;
+    text-align: center;
+}
+
+.edito-container {
+    text-align: center;
+    background-color: #2a3990;
+    color: #ffffff;
+}
+
+.edito-container .image-edito {
+    display: inline-block;
+}
+
+.latest-recipes section {
+    display: flex;
+    align-items: center;
+    border: 1px solid #7890cd;
+    margin: 1rem;
+}
+
+.latest-recipes section img {
+    flex: 1;
+    max-width: 10%; 
+}
+
+.latest-recipes section article {
+    flex: 1;
+    padding: 0 20px; 
+    color: #7890cd
+}
