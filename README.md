@@ -1,6 +1,7 @@
 # PtitCuistot
 
-PtitCuistot est une application web php/javascript/html/css, nous devons, avec mes camarades, reprendre le projet existant donné par le professeur et le finaliser.
+PtitCuistot est une application web php/javascript/html/css.
+Nous devons avec mes camarades, reprendre le projet existant donné par le professeur et le finaliser.
 Il prends la forme d'un blog contenant diverses recettes de cuisines alimenté par la communauté.
 
 ## Sujet
@@ -12,16 +13,18 @@ Il prends la forme d'un blog contenant diverses recettes de cuisines alimenté p
 * [Tailwind](https://tailwindcss.com/) - Le framework CSS utilisé
 * [MySQL](https://www.mysql.com/fr/) - Le système de gestion de base de données utilisé
 * [Visual Studio Code](https://code.visualstudio.com/) - l'evironnement de développement utilisé
-
-## Versioning
-
  
-
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Arthur Hamon** - *Création du README.md* - [PrCthulhu](https://github.com/PrCthulhu)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+Voici la liste complète des contributeurs [contributeurs](https://github.com/your/project/contributors) qui ont participé à ce projet.
+
+## Contributeurs
+
+* [Gaëtan Lepley](https://tailwindcss.com/) - Le framework CSS utilisé
+* [I4nis Le Blay](https://github.com/I4NIS) - Le framework CSS utilisé
+* [Ferdinand Eppele aka "Frédo"](https://github.com/FerdinandEPPELE) - Le framework CSS utilisé
 
 ## License
 
