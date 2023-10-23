@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 10px;
+}
+
+.top-container {
+    color: #7890cd;
+    border: 1px #7890cd solid;
+    flex-basis: 100%;
+    margin: 10px;
+    padding: 10px;
+}
+
+.container-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.latest-recipes-container,
+.aside-container {
+    flex: 1;
+    flex-basis: 45%;
+}
+
+.latest-recipes-container {
+    border: 1px #7890cd solid;
+    margin: 10px;
+}
+
+.recipe-section {
+    display: flex;
+    align-items: center; 
+    border: 1px solid #7890cd;
+    margin: 15px 10px 15px 10px;
+    color: #7890cd;
+}
+
+.recipe-image {
+    max-width: 100px;
+    height: auto;
+    margin: 0 10px;
+}
+
+.recipe-details {
+    flex: 1;
+    padding: 4px;
+    font-size: 17px;
+}
+
+.recipe-title {
+    font-size: 23px;
+    font-weight: bold;
+    padding: 2px 2px 2px 0;
+}
+
+.latest-recipe-title {
+    font-size: 50px;
+    font-weight: bold;
+    color: #7890cd;
+    text-align: center;
+}
+
+.recipe-autor {
+    font-size: 13px;
+    font-weight: bold;
+    padding: 5px 2px 2px 0;
+    text-decoration: underline;
+}
+
+.edito-aside {
+    text-align: center;
+    background-color: #2a3990;
+    border: 1px black solid;
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.edito-image {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.edito-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.edito-content {
+    font-size: 16px;
+    color: #fff;
+}
