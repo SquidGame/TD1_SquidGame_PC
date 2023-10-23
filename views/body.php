@@ -15,9 +15,9 @@
                 <h1 class="latest-recipe-title">LES DERNIERES RECETTES</h1>
                 
                 <?php foreach ($latestRecipes as $recipe) : ?>
-                    <section class="recipe-section">
+                    <section class="recipe-section hover:bg-[#7890cd]  hover:text-white hover:cursor-pointer">
                         <img alt="recipe-image-<?= $recipe['RC_ID'] ?>" src="../images/houmous.jpg" class="recipe-image">
-                        <article class="recipe-details">
+                        <article class="recipe-details ">
                             <h2 class="recipe-title"><?= $recipe['RC_TITRE'] ?></h2>
                             <p class="recipe-content"><?= $recipe['RC_CONTENU'] ?></p>
                             <p class="recipe-autor"> - Réalisé par : <?= $recipe['RC_AUTEUR'] ?></p>
