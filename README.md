@@ -37,7 +37,12 @@ L’administrateur peut :
 
 ### V2 - [Branche](https://github.com/SquidGame/TD1_SquidGame_PC/blob/V1)
 
-
+De nouvelles fonctionnalités ont été intégrées au site :
+* La possibilité pour l’internaute de se créer un compte
+* La possibilité pour l’éditeur de modifier son mot de passe
+* La possibilité pour l’éditeur de supprimer son compte
+* La possibilité pour l’éditeur de saisir un commentaire sur une recette (soumis à validation de l’administrateur) : l’affichage des commentaires se fera sur la page de détail d’une recette.
+* La possibilité pour l’administrateur de suspendre ou supprimer un compte
 
 ## Réalisé avec
 
@@ -61,7 +66,3 @@ Voici la liste complète des contributeurs [contributeurs](https://github.com/Sq
 
 
 ## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
