@@ -5,7 +5,7 @@
     </div>
     <div class="nav-items">
         <li><a href="../index.php">Accueil</a></li>
-        <li><a href="#">Nos recettes</a></li>
+        <li><a href="/views/recettes.php">Nos recettes</a></li>
         <li class="submenu-parent">
             <a href="#">Filtres</a>
             <ul class="submenu">
@@ -14,7 +14,7 @@
                 <li><a href="#">Ingrédient</a></li>
             </ul>
         </li>
-        <li><a href="./views/login.php">Connexion</a></li>
+        <li><a href="../views/login.php">Connexion</a></li>
     </div>
     <div class="cancel-icon">
         <span class="fas fa-times"></span>
