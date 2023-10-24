@@ -35,7 +35,7 @@ L’administrateur peut :
 * Valider l’ajout ou la modification d’une recette,
 * Modifier le contenu de l’édito (Page édito)
 
-### V2 - [Branche](https://github.com/SquidGame/TD1_SquidGame_PC/blob/V1)
+### V2 - [Branche](https://github.com/SquidGame/TD1_SquidGame_PC/blob/V2)
 
 De nouvelles fonctionnalités ont été intégrées au site :
 * La possibilité pour l’internaute de se créer un compte
@@ -46,23 +46,15 @@ De nouvelles fonctionnalités ont été intégrées au site :
 
 ## Réalisé avec
 
-* [Tailwind](https://github.com/Zalgow667) - Le framework CSS utilisé
+* [Tailwind](https://tailwindcss.com/) - Le framework CSS utilisé
 * [MySQL](https://www.mysql.com/fr/) - Le système de gestion de base de données utilisé
 * [Visual Studio Code](https://code.visualstudio.com/) - l'evironnement de développement utilisé
 * [GitHub](https://github.com/) - L'outil utilisé pour le versionnage 
 
  
-## Autheur
+## Auteurs
 
-* **Arthur Hamon** - *Création du README.md* - [PrCthulhu](https://github.com/PrCthulhu)
-
-Voici la liste complète des contributeurs [contributeurs](https://github.com/SquidGame/TD1_SquidGame_PC/blob/main/README.md#contributeurs) qui ont participé à ce projet.
-
-## Contributeurs
-
-* [Gaëtan Lepley](https://tailwindcss.com/) - Le framework CSS utilisé
-* [I4nis Le Blay](https://github.com/I4NIS) - Le framework CSS utilisé
-* [Ferdinand Eppele aka "Frédo"](https://github.com/FerdinandEPPELE) - Le framework CSS utilisé
-
-
-## Acknowledgments
+* [Gaëtan Lepley](https://github.com/Zalgow667)
+* [I4nis Le Blay](https://github.com/I4NIS)
+* [Ferdinand Eppele](https://github.com/FerdinandEPPELE)
+* [Arthur Hamon](https://github.com/PrCthulhu)
