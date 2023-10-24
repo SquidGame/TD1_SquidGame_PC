@@ -55,6 +55,6 @@ De nouvelles fonctionnalités ont été intégrées au site :
 ## Auteurs
 
 * [Gaëtan Lepley](https://github.com/Zalgow667)
-* [I4nis Le Blay](https://github.com/I4NIS)
+* [Ianis Le Blay](https://github.com/I4NIS)
 * [Ferdinand Eppele](https://github.com/FerdinandEPPELE)
 * [Arthur Hamon](https://github.com/PrCthulhu)
