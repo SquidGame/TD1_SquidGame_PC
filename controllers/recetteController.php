@@ -4,7 +4,6 @@ require('./models/recetteModel.php');
 
 class RecetteController {
 
-    //Fait appel à la fonction getLatestRecipes dans le modèle pour montrer les dernières recettes
     public function showLatestRecipes() {
         $latestRecipes = RecetteModel::getLatestRecipes();
         require_once './views/page/accueil.php';
@@ -79,6 +78,18 @@ class RecetteController {
         }
     } 
 
+        //Fait appel à la fonction deleteRecipe dans le modèle pour supprimer une recette
+        public function deleteRecipeByIdByAdmin(){
+            $recetteId = isset($_GET['recipe_id']) ? $_GET['recipe_id'] : null;
+            
+            if ($recetteId === null) {
+                throw new Exception('Aucune recette n\'a été sélectionnée !');
+            } else {
+                RecetteModel::deleteRecipe($recetteId);
+                header('Location: index.php?action=admin_panel');
+            }
+        } 
+
     //Fait appel à la fonction modifyRecipe dans le modèle pour modifier une recette
     public function modifyRecipeById(){
         $recetteId = isset($_GET['recipe_id']) ? $_GET['recipe_id'] : null;
@@ -97,10 +108,10 @@ class RecetteController {
         $recetteContenu = isset($_POST['RC_CONTENU_A']) ? $_POST['RC_CONTENU_A'] : null;
         $recetteResume = isset($_POST['RC_RESUME_A']) ? $_POST['RC_RESUME_A'] : null;
         $recetteCategorie = isset($_POST['RC_CATEGORIE_A']) ? $_POST['RC_CATEGORIE_A'] : null;
-        $recetteImage = isset($_POST['RC_IMAGE_A']) ? $_POST['RC_IMAGE_A'] : null;
+        $recetteImage = isset($_FILES['RC_IMAGE_A']) && $_FILES['RC_IMAGE_A']['error'] == 0;
         $recetteAuteur = isset($_SESSION['id']) ? $_SESSION['id'] : null;
         
-        if ($recetteTitre === null || $recetteContenu === null || $recetteResume === null || $recetteCategorie === null || $recetteImage === null || $recetteAuteur === null) {
+        if ($recetteTitre === null || $recetteContenu === null || $recetteResume === null || $recetteCategorie === null || !$recetteImage || $recetteAuteur === null) {
             throw new Exception('Tous les champs ne sont pas remplis !');
         } else {
             RecetteModel::addRecipe($recetteTitre, $recetteContenu, $recetteResume, $recetteCategorie, $recetteImage, $recetteAuteur);

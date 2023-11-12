@@ -22,6 +22,27 @@ class MembreModel extends model {
         return $req->fetch();
     }
 
+    public static function getAllRecipes(){
+        $conn = self::connexion();
+
+        $req = $conn->prepare('SELECT 	
+        RC_ID,
+        RC_TITRE,
+        RC_CONTENU,
+        RC_RESUME,
+        RC_CATEGORIE,
+        RC_RECETTE_DATE_INSCRIPTION,
+        RC_IMAGE,
+        RC_RECETTE_DATE_CREATION,
+        RC_RECETTE_DATE_MODIFICATION,
+        RC_STATUS,
+        RC_AUTEUR
+        FROM RECETTE');
+
+        $req->execute();
+        return $req->fetchAll();
+    }
+
     //Fonction qui permet de récupérer les informations de tous les utilisateurs
     public static function getAllUser(){
         $conn = self::connexion();

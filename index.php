@@ -61,6 +61,11 @@ require('./controllers/membreController.php');
             $deleteRecipe->deleteRecipeById();
         }
 
+        else if($_GET['action'] == "delete_recipe_admin") {
+            $deleteRecipe = new recetteController();
+            $deleteRecipe->deleteRecipeByIdByAdmin();
+        }
+
         else if($_GET['action'] == "modify_recipe") {
             $modifyRecipe = new recetteController();
             $modifyRecipe->modifyRecipeById();
@@ -123,7 +128,7 @@ require('./controllers/membreController.php');
             $unban = new membreController();
             $unban->unbanUser();
         }
-       
+        
     } else {
         $recette = new recetteController();
         $recettes = $recette->showLatestRecipes();    

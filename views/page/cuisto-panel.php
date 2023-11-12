@@ -145,7 +145,7 @@
         <div id="addRecipeModal" class="modal">
             <div class="modal-content">
                 <span class="close-button" onclick="closeModalA()">&times;</span>
-                <form action="../index.php?action=add_recipe" method="post">
+                <form enctype="multipart/form-data" action="../index.php?action=add_recipe" method="post">
                     <label for="RC_TITRE_A">Titre de la recette</label>
                     <input type="text" id="RC_TITRE_A" name="RC_TITRE_A" required>
 
@@ -163,7 +163,7 @@
                     </select>
 
                     <label for="RC_IMAGE_A">Image de la recette</label>
-                    <input type="text" id="RC_IMAGE_A" name="RC_IMAGE_A" required>
+                    <input type="file" id="RC_IMAGE_A" name="RC_IMAGE_A" required>
 
                     <input type="submit" value="Ajouter la recette">
                 </form>

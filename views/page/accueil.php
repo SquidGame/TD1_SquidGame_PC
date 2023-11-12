@@ -133,20 +133,20 @@ main {
                 <!-- Permet d'afficher la liste des recettes sur la page d'accueil -->
                 <?php foreach ($latestRecipes as $recipe) : ?> 
                     <section class="recipe-section" onclick="location.href='../index.php?action=recipe_details&recipe_id=<?php echo $recipe['RC_ID']; ?>';">
-                        <img alt="recipe-image-<?= $recipe['RC_ID'] ?>" src="../images/houmous.jpg" class="recipe-image">
+                        <!-- Mettez à jour l'attribut src pour pointer vers get_image.php avec l'ID de l'image -->
+                        <img alt="recipe-image" src="../images/<?php echo $recipe['IMG_NOM']; ?>" class="recipe-image">
                         <article class="recipe-details">
-                            <h2 class="recipe-title"><?= $recipe['RC_TITRE'] ?></h2>
-                            <p class="recipe-content"><?= $recipe['RC_CONTENU'] ?></p>
-                            <p class="recipe-autor"> - Réalisé par : <?= $recipe['RC_AUTEUR'] ?></p>
+                            <h2 class="recipe-title"><?= htmlspecialchars($recipe['RC_TITRE']) ?></h2>
+                            <p class="recipe-content"><?= htmlspecialchars($recipe['RC_CONTENU']) ?></p>
+                            <p class="recipe-autor"> - Réalisé par : <?= htmlspecialchars($recipe['RC_AUTEUR']) ?></p>
                         </article>
                     </section>
                 <?php endforeach; ?>
-            
             </div>
             <!-- Affichage de l'image à droite de la page d'accueil -->
             <div class="aside-container">
                 <aside class="edito-aside">
-                    <img alt="edito-image" src="../images/pticuisto.png" class="edito-image">
+                    <img alt="edito-image" src="../images/Pticuisto.png" class="edito-image">
                     <h2 class="edito-title">Edito</h2>
                     <p class="edito-content">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
