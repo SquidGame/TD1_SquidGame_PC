@@ -6,26 +6,28 @@ class loginController
     public function connexionUser($pseudo, $pass)
     {
         $memberManager = new loginModel();
-        
+    
         $resultat = $memberManager->connexionUser($pseudo, $pass);
-        
+    
         if (!$resultat) { 
-            $errorPseudo = 'Erreur d\'identifiant ou mot de passe';
+            $_SESSION['error_message'] = 'Erreur d\'identifiant ou mot de passe';
+            header('location: index.php');
         } 
-        
         else { 
             $isPasswordCorrect = password_verify($pass, $resultat['usr_password']);
-
+    
             if (!$isPasswordCorrect) { 
-                $errorPassword = 'Erreur d\'identifiant ou mot de passe';
+                $_SESSION['error_message'] = 'Erreur d\'identifiant ou mot de passe';
             } else { 
                 $_SESSION['type'] = $resultat['usr_type']; 
                 $_SESSION['id'] = $resultat['usr_id'];	
-                $_SESSION['pseudo'] = $_POST['username'];
+                $_SESSION['pseudo'] = $pseudo;
                 header('location: index.php');
+                exit();
             }
         }
-    } 
+    }
+    
 
     public function saveUser($pseudo, $nom, $prenom, $pass, $email)
     {

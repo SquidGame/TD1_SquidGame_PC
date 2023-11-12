@@ -83,6 +83,14 @@
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm2-9H8v2h4V9z" clip-rule="evenodd"></path></svg>
                 </button>
             </div>
+
+            <?php if (isset($_SESSION['error_message'])): ?>
+                <div class="error-message">
+                    <?php echo htmlspecialchars($_SESSION['error_message']); ?>
+                    <?php unset($_SESSION['error_message']); // Effacer le message après l'affichage ?>
+                </div>
+            <?php endif; ?>
+            
             <!-- Modal body -->
             <form id="login-form" method="post" action="index.php?action=userlogin">
                 <div class="mb-4">
