@@ -91,6 +91,11 @@ require('./controllers/membreController.php');
             $modify->modifyUserInformation();
         }
 
+        else if($_GET['action'] == "delete_account"){
+            $modify = new MembreController();
+            $modify->deleteUser();
+        }
+
         else if($_GET['action'] == "recipe_by_categorie"){
             $recipes = new recetteController();
             $recipes->showRecipesByCategory();

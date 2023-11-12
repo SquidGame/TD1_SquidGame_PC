@@ -87,6 +87,15 @@ class MembreController {
         MembreModel::unbanUser($userId);
         header('Location: index.php?action=admin_panel');
     }
+
+    //Fait appel à la fonction deleteUser dans le modèle pour supprimer un utilisateur
+    public function deleteUser(){
+        $userId = $_SESSION['id'] ? $_SESSION['id'] : null;
+        $pseudo = $_SESSION['pseudo'] ? $_SESSION['pseudo'] : null;
+
+        MembreModel::deleteUserInformation($userId, $pseudo);
+        header('Location: ../views/page/logout.php');
+    }
 }
 
 ?>

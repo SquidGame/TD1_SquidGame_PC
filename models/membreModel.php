@@ -178,6 +178,23 @@ class MembreModel extends model {
         $req->execute();
         return $req->fetchAll();
     }
+
+    public static function deleteUserInformation($id, $pseudo){
+        $conn = self::connexion();
+
+        $req = $conn->prepare('DELETE FROM COMMENTAIRE WHERE COM_USER = ?');
+        $req->execute(array($pseudo));
+
+        $req = $conn->prepare('DELETE FROM RECETTE_INGREDIENT WHERE RI_RECETTE = (
+            SELECT RC_ID FROM RECETTE WHERE RC_AUTEUR = ?)');
+        $req->execute(array($id));
+
+        $req = $conn->prepare('DELETE FROM RECETTE WHERE RC_AUTEUR = ?');
+        $req->execute(array($id));
+
+        $req = $conn->prepare('DELETE FROM UTILISATEUR WHERE USR_ID = ?');
+        $req->execute(array($id));
+    }
 }
 ?>
 

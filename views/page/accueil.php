@@ -124,7 +124,9 @@ main {
     <div class="page-container">
         <div class="top-container">
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices odio, quis aliquam nunc nisl ut nunc. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices odio, quis aliquam nunc nisl ut nunc.
+            Bienvenue sur "PtitCuisto" !
+
+Chers passionnés de cuisine, gastronomes en herbe et curieux de saveurs nouvelles, soyez les bienvenus dans notre univers culinaire. "PtitCuisto" est votre nouvelle destination où partager la passion de la cuisine, découvrir des recettes innovantes et explorer de nouvelles techniques culinaires. Ici, vous trouverez une variété de recettes, des astuces de chefs, des articles inspirants et des guides pratiques pour vous aider à réaliser des plats délicieux. Nous vous invitons à partager vos propres recettes et expériences, car "PtitCuisto" est une communauté où chaque membre est une source d'inspiration.
             </p>
         </div>
         <div class="container-wrapper">
@@ -137,8 +139,8 @@ main {
                         <img alt="recipe-image" src="../images/<?php echo $recipe['IMG_NOM']; ?>" class="recipe-image">
                         <article class="recipe-details">
                             <h2 class="recipe-title"><?= htmlspecialchars($recipe['RC_TITRE']) ?></h2>
-                            <p class="recipe-content"><?= htmlspecialchars($recipe['RC_CONTENU']) ?></p>
-                            <p class="recipe-autor"> - Réalisé par : <?= htmlspecialchars($recipe['RC_AUTEUR']) ?></p>
+                            <p class="recipe-content">Ingrédient : <?= htmlspecialchars($recipe['RC_CONTENU']) ?></p>
+                            <p class="recipe-autor"> - Réalisé par : <?= htmlspecialchars($recipe['USR_PSEUDO']) ?></p>
                         </article>
                     </section>
                 <?php endforeach; ?>
