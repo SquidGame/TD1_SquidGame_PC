@@ -31,14 +31,20 @@
                                 <div class="modal-content">
                                     <span class="close-button" onclick="closeModal()">&times;</span>
                                     <h2>Modifier la Recette</h2>
-                                    <form id="editRecipeForm" method="post" action="../index.php?action=modify_recipe&recipe_id=<?php echo $recipe['RC_ID']; ?>">
-                                        <input type="text" id="modalTitle" name="RC_TITRE" placeholder="Titre de la recette" value=<?php echo $recipe['RC_TITRE'] ?>>
+                                    <form id="editRecipeForm" method="post" action="../index.php?action=modify_recipe_admin&recipe_id=<?php echo $recipe['RC_ID']; ?>">
+                                        <input type="text" id="modalTitle" name="RC_TITRE" placeholder="Titre de la recette">
 
-                                        <label for="modalContent">Contenu</label>
-                                        <textarea id="modalContent" name="RC_CONTENU" placeholder="Contenu de la recette" value=<?php echo $recipe['RC_CONTENU'] ?>></textarea>
+                                        <label for="RC_CONTENU_A">Contenu de la recette</label>
+                                        <select multiple name="ingredients_add[]">
+                                            <?php foreach($ingredients as $ingredient): ?>
+                                                <option value="<?php echo $ingredient['INGR_ID']; ?>">
+                                                    <?php echo $ingredient['INGR_INTITULE']; ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
 
                                         <label for="modalSummary">Résumé</label>
-                                        <textarea id="modalSummary" name="RC_RESUME" placeholder="Résumé de la recette" value=<?php echo $recipe['RC_RESUME'] ?>></textarea>
+                                        <textarea id="modalSummary" name="RC_RESUME" placeholder="Résumé de la recette"></textarea>
 
                                         <label for="modalCategory">Catégorie</label>
                                         <select id="modalCategory" name="RC_CATEGORIE">

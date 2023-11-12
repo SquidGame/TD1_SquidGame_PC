@@ -132,22 +132,24 @@ class RecetteModel extends model {
     public static function modifyRecipe($recetteTitre, $recetteContenu, $recetteResume, $recetteCategorie, $recetteId) {
         $conn = self::connexion();
         $query = "UPDATE RECETTE SET 
-            RC_TITRE = ?,
-            RC_CONTENU = ?,
-            RC_RESUME = ?,
-            RC_CATEGORIE = ?,
-            RC_RECETTE_DATE_MODIFICATION = NOW()
-            RC_STATUS = 0
-            WHERE RC_ID = ?";
+        RC_TITRE = ?,
+        RC_CONTENU = ?,
+        RC_RESUME = ?,
+        RC_CATEGORIE = ?,
+        RC_RECETTE_DATE_MODIFICATION = NOW(),
+        RC_STATUS = 0
+        WHERE RC_ID = ?";
         $stmt = $conn->prepare($query);
         
         try {
-            $stmt->execute(array($recetteTitre, $recetteContenu, $recetteResume, $recetteCategorie, $recetteId));
-            return $stmt->rowCount(); 
+            $stmt->execute([$recetteTitre, $recetteContenu, $recetteResume, $recetteCategorie, $recetteId]);
+            $count = $stmt->rowCount();
         } catch (PDOException $e) {
+            die($e->getMessage());
             error_log($e->getMessage());
             return false;
         }
+        
     }
     
     public static function addRecipe($recetteTitre, $recetteContenu, $recetteResume, $recetteCategorie, $recetteImage, $recetteAuteur, $ingredients){
@@ -159,7 +161,6 @@ class RecetteModel extends model {
             $img_nom = $_FILES['RC_IMAGE_A']['name'];
             $upload = "images/".$img_nom;
 
-            // Déplacer le fichier téléchargé vers son emplacement final
             move_uploaded_file($_FILES['RC_IMAGE_A']['tmp_name'], $upload);
 
             // Préparer et exécuter la requête d'insertion pour la table 'image'
@@ -225,7 +226,7 @@ class RecetteModel extends model {
     public static function addCommentaireForRecipe($contenu, $pseudo, $recetteId){
         $conn = self::connexion();
         $query = "INSERT INTO COMMENTAIRE (COM_ID, COM_CONTENU, COM_USER, COM_RECETTE_ID, COM_STATUS) 
-        SELECT max_com_id + 1, ?, ?, ?, 0 FROM (SELECT MAX(com_id) as max_com_id FROM COMMENTAIRE) as sub";
+        SELECT COALESCE(max_com_id, 0)+ 1, ?, ?, ?, 0 FROM (SELECT MAX(com_id) as max_com_id FROM COMMENTAIRE) as sub";
 
         $stmt = $conn->prepare($query);
 

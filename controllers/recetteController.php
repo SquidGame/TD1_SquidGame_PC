@@ -106,6 +106,21 @@ class RecetteController {
         }
     }
 
+    //Fait appel à la fonction modifyRecipe dans le modèle pour modifier une recette
+    public function modifyRecipeByIdByAdmin(){
+        $recetteId = isset($_GET['recipe_id']) ? $_GET['recipe_id'] : null;
+        
+        $selectedIngredients = isset($_POST['ingredients']) ? $_POST['ingredients'] : [];
+        $recetteContenu = implode(", ", $selectedIngredients);
+
+        if ($recetteId === null) {
+            throw new Exception('Aucune recette n\'a été sélectionnée !');
+        } else {
+            RecetteModel::modifyRecipe($_POST['RC_TITRE'], $recetteContenu, $_POST['RC_RESUME'], $_POST['RC_CATEGORIE'], $recetteId);
+            header('Location: index.php?action=admin_panel');
+        }
+    }
+
     //Fait appel à la fonction addRecipe dans le modèle pour ajouter une recette
     public function addRecipeByCuisto(){
         $recetteTitre = isset($_POST['RC_TITRE_A']) ? $_POST['RC_TITRE_A'] : null;

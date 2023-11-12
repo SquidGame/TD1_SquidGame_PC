@@ -37,7 +37,8 @@ class MembreModel extends model {
         RC_RECETTE_DATE_MODIFICATION,
         RC_STATUS,
         RC_AUTEUR
-        FROM RECETTE');
+        FROM RECETTE
+        WHERE RC_STATUS = 1');
 
         $req->execute();
         return $req->fetchAll();

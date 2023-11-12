@@ -70,6 +70,11 @@ require('./controllers/membreController.php');
             $modifyRecipe = new recetteController();
             $modifyRecipe->modifyRecipeById();
         }
+
+        else if($_GET['action'] == "modify_recipe_admin") {
+            $modifyRecipe = new recetteController();
+            $modifyRecipe->modifyRecipeByIdByAdmin();
+        }
         
         else if($_GET['action'] == "add_recipe"){
             $addRecipe = new recetteController();

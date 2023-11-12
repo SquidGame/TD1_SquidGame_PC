@@ -26,6 +26,7 @@ class MembreController {
         $commentaires = MembreModel::getAllAwaitingComment();
         $users = MembreModel::getAllUser();
         $recipes = MembreModel::getAllRecipes();
+        $ingredients = MembreModel::getAllIngredients();
         require_once './views/page/admin-panel.php';
     }
 
