@@ -2,7 +2,7 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
-
+/* Style de l'accueil */
 *{
   margin: 0;
   padding: 0;
@@ -130,8 +130,8 @@ main {
         <div class="container-wrapper">
             <div class="latest-recipes-container">
                 <h1 class="latest-recipe-title">LES DERNIERES RECETTES</h1>
-                
-                <?php foreach ($latestRecipes as $recipe) : ?>
+                <!-- Permet d'afficher la liste des recettes sur la page d'accueil -->
+                <?php foreach ($latestRecipes as $recipe) : ?> 
                     <section class="recipe-section" onclick="location.href='../index.php?action=recipe_details&recipe_id=<?php echo $recipe['RC_ID']; ?>';">
                         <img alt="recipe-image-<?= $recipe['RC_ID'] ?>" src="../images/houmous.jpg" class="recipe-image">
                         <article class="recipe-details">
@@ -143,6 +143,7 @@ main {
                 <?php endforeach; ?>
             
             </div>
+            <!-- Affichage de l'image à droite de la page d'accueil -->
             <div class="aside-container">
                 <aside class="edito-aside">
                     <img alt="edito-image" src="../images/pticuisto.png" class="edito-image">

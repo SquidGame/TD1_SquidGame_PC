@@ -204,7 +204,7 @@
     </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
+    document.addEventListener('DOMContentLoaded', (event) => { // Permets de check que la page  bien été afficher avant qu'il soit traité par le Javascript.
         var modal = document.getElementById('login-modal');
         var btn = document.getElementById('login-btn');
         var span = document.getElementById('close-modal');

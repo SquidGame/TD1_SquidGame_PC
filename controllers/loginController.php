@@ -28,7 +28,7 @@ class loginController
         }
     }
     
-
+    //Permets de sauvegarder un utilisateur
     public function saveUser($pseudo, $nom, $prenom, $pass, $email)
     {
         $memberManager = new loginModel();

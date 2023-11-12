@@ -3,6 +3,8 @@
 require_once('model.php');
 
 class RecetteModel extends model {
+
+    //Permets de récupérer les 5 dernières recettes qui ont été acceptée
     public static function getLatestRecipes() {
         $conn = self::connexion();
         $query = "SELECT * FROM RECETTE WHERE RC_STATUS = 1 ORDER BY rc_recette_date_inscription ASC LIMIT 5";
@@ -11,6 +13,7 @@ class RecetteModel extends model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //Permets de récupérer toutes les recettes qui ont été acceptée
     public static function getAllRecipes($limit) {
         $conn = self::connexion();
         $limitInt = intval($limit); 
@@ -20,6 +23,7 @@ class RecetteModel extends model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    //Fonction de récupérer les ingrédients d'une recette
     public static function getIngredientFromRecipes($recetteId) {
         $conn = self::connexion();
         $query = "SELECT 
@@ -40,6 +44,7 @@ class RecetteModel extends model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //Permets de récupérer les ingrédients par catégorie d'ingrédients
     public static function getRecipesByCategory($category){
         $conn = self::connexion();
         $query = "SELECT * FROM RECETTE WHERE RC_CATEGORIE = ? AND RC_STATUS = 1";
@@ -48,6 +53,7 @@ class RecetteModel extends model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //Permets de récupérer les recettes par leur nom
     public static function getRecipeByName($recipeName) {
         $conn = self::connexion();
         $query = "SELECT * FROM RECETTE WHERE RC_TITRE = ? AND RC_STATUS = 1";
@@ -56,6 +62,7 @@ class RecetteModel extends model {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    //Permets de récupérer les recettes par ingrédients
     public static function getRecipesByIngredients($ingredientId) {
         $conn = self::connexion();
         $query = "SELECT * FROM RECETTE WHERE RC_ID IN (SELECT RI_RECETTE FROM RECETTE_INGREDIENT WHERE RI_INGREDIENT = ?) AND RC_STATUS = 1";
@@ -64,6 +71,7 @@ class RecetteModel extends model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //Permets de récupérer les commentaires d'une recette
     public static function getCommentaireByRecipe($recetteId){
         $conn = self::connexion();
         $query = "SELECT * FROM COMMENTAIRE WHERE COM_RECETTE_ID = ? AND COM_STATUS = 1";
@@ -72,6 +80,7 @@ class RecetteModel extends model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //Permets de récupérer le titre d'une recette
     public static function getTitleRecipe(){
         $conn = self::connexion();
         $query = "SELECT RC_TITRE FROM RECETTE WHERE RC_STATUS = 1";
@@ -79,6 +88,7 @@ class RecetteModel extends model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    //Permets de supprimer une recette
     public static function deleteRecipe($recetteId) {
         try {
             $conn = self::connexion();
@@ -94,6 +104,7 @@ class RecetteModel extends model {
         } 
     }
 
+    //Permets de modifier une recette
     public static function modifyRecipe($recetteTitre, $recetteContenu, $recetteResume, $recetteCategorie, $recetteId) {
         $conn = self::connexion();
         $query = "UPDATE RECETTE SET 
@@ -115,6 +126,7 @@ class RecetteModel extends model {
         }
     }
     
+    //Permets d'ajouter une recette
     public static function addRecipe(){
         $conn = self::connexion();
         $query = "INSERT INTO RECETTE (RC_ID, RC_TITRE, RC_CONTENU, RC_RESUME, RC_CATEGORIE, RC_IMAGE, RC_RECETTE_DATE_CREATION, RC_RECETTE_DATE_MODIFICATION, RC_RECETTE_DATE_INSCRIPTION, RC_STATUS, RC_AUTEUR) 
@@ -133,6 +145,7 @@ class RecetteModel extends model {
         }
     }
     
+    //Permets d'ajouter un commentaire a une recette
     public static function addCommentaireForRecipe($contenu, $pseudo, $recetteId){
         $conn = self::connexion();
         $query = "INSERT INTO COMMENTAIRE (COM_ID, COM_CONTENU, COM_USER, COM_RECETTE_ID, COM_STATUS) 

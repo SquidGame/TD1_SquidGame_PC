@@ -7,6 +7,7 @@
         <h2>Recettes en attente de confirmation</h2>
         <table>
             <tbody>
+            <!-- Permet d'afficher la liste des recette dans le pannel admin -->
             <?php if(is_array($recettes)): ?>
                     <?php foreach ($recettes as $recette): ?>
                     <tr>

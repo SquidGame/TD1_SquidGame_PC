@@ -1,5 +1,6 @@
 <?php ob_start(); ?>
 
+<!-- Style de la page -->
 <style>
     .recipe-section:hover {
         background-color: #c5c7c5;
@@ -19,6 +20,7 @@
 
 </style>
 
+<!-- Permet d'afficher les recettes dans la page "Nos recettes" -->
 <?php foreach ($allRecipes as $recipe) : ?>
     <section class="recipe-section" onclick="location.href='../index.php?action=recipe_details&recipe_id=<?php echo $recipe['RC_ID']; ?>';">
         <img alt="recipe-image-<?= $recipe['RC_ID'] ?>" src="../images/houmous.jpg" class="recipe-image">
@@ -30,6 +32,7 @@
     </section>
 <?php endforeach; ?>
 
+<!-- Permet d'ajouter 4 recette à l'affichage de la page des recettes -->
 <?php
     $newLimit = (isset($_GET['limit']) ? intval($_GET['limit']) : 4) + 4;
 ?>

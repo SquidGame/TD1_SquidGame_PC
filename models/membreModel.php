@@ -3,6 +3,7 @@
 require_once('model.php');
 
 class MembreModel extends model {
+    //Fonction qui permet de récupérer toutes les informations d'un utilisateur
     public static function getAllUserInfo($userId) {
         $conn = self::connexion();
 
@@ -21,6 +22,7 @@ class MembreModel extends model {
         return $req->fetch();
     }
 
+    //Fonction qui permet de récupérer les informations de tous les utilisateurs
     public static function getAllUser(){
         $conn = self::connexion();
 
@@ -38,6 +40,7 @@ class MembreModel extends model {
         return $req->fetchAll();
     }
 
+    //Fonction qui permet de ban un utilisateur
     public static function banUser($userId){
         $conn = self::connexion();
 
@@ -48,6 +51,7 @@ class MembreModel extends model {
         $req->execute(array($userId));
     }
 
+    //Fonction qui permet de débannir un utilisateur
     public static function unbanUser($userId){
         $conn = self::connexion();
 
@@ -58,6 +62,7 @@ class MembreModel extends model {
         $req->execute(array($userId));
     }
 
+    //Fonction qui permet de récupérer toutes les recettes provenant du même utilisateur
     public static function getAllRecipesFromUser($cuistoId){
         $conn = self::connexion();
 
@@ -80,6 +85,7 @@ class MembreModel extends model {
         return $req->fetchAll();
     }
 
+    //Fonction qui permet de modifier les information d'un utilisateur
     public static function modifyUserInformation($userId, $pseudo, $email, $prenom, $nom, $password) {
         $conn = self::connexion();
 
@@ -90,6 +96,7 @@ class MembreModel extends model {
         $req->execute(array($pseudo, $email, $prenom, $nom, $password, $_SESSION['id']));
     }
 
+    //Fonction qui permet de récupérer toutes les recettes qui sont "En attente"
     public static function getAllAwaitingRecipe(){
         $conn = self::connexion();
         $query = "SELECT * FROM RECETTE WHERE RC_STATUS = 0 ORDER BY rc_recette_date_inscription DESC";
@@ -98,6 +105,7 @@ class MembreModel extends model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //Fonction qui permet de récupérer toutes les commentaires qui sont en attente de vérification
     public static function getAllAwaitingComment(){
         $conn = self::connexion();
         $query = "SELECT * FROM COMMENTAIRE WHERE COM_STATUS = 0";
@@ -106,6 +114,7 @@ class MembreModel extends model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //Fonction qui permet de valider une recette
     public static function acceptRecipe($recipeId){
         $conn = self::connexion();
         $query = "UPDATE RECETTE SET RC_STATUS = 1 WHERE RC_ID = ?";
@@ -113,6 +122,7 @@ class MembreModel extends model {
         $stmt->execute(array($recipeId));
     }
 
+    //Fonction qui permet de refuser une recette
     public static function refuseRecipe($recipeId){
         $conn = self::connexion();
         $query = "UPDATE RECETTE SET RC_STATUS = 2 WHERE RC_ID = ?";
@@ -120,6 +130,7 @@ class MembreModel extends model {
         $stmt->execute(array($recipeId));
     }
 
+    //Fonction qui permet d'accepter un commentaire
     public static function acceptCommentaire($commentId){
         $conn = self::connexion();
         $query = "UPDATE COMMENTAIRE SET COM_STATUS = 1 WHERE COM_ID = ?";
@@ -127,6 +138,7 @@ class MembreModel extends model {
         $stmt->execute(array($commentId));
     }
 
+    //Fonction qui permet de refuser un commentaire
     public static function refuseCommentaire($commentId){
         $conn = self::connexion();
         $query = "UPDATE COMMENTAIRE SET COM_STATUS = 2 WHERE COM_ID = ?";

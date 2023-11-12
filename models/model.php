@@ -1,5 +1,7 @@
 <?php
 class model {
+
+    //Fonction permettant l'accès à la base de données
     protected static function connexion(){
         $env = parse_ini_file('./login/info.env');
         $dbHost = $env['DB_HOST'];

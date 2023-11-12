@@ -1,6 +1,6 @@
 <?php ob_start();  ?>
 
-
+<!-- Style de la page -->
 <style>
     .dashboard {
         max-width: 800px;
@@ -75,6 +75,7 @@
     <?php if(empty($detailsRecipe)): ?>
         <p>Aucune recette trouvée ou détails indisponibles.</p>
     <?php else: ?>
+        <!-- Affichage des détails de la recette -->
         <h2><?php echo htmlspecialchars($detailsRecipe[0]['RC_TITRE']); ?></h2>
         <p><strong>ID Recette:</strong> <?php echo htmlspecialchars($detailsRecipe[0]['RC_ID']); ?></p>
         <?php foreach ($detailsRecipe as $detail): ?>
