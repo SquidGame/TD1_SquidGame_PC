@@ -21,7 +21,7 @@ Pour consulter notre Ptit Cuisto il faudra vous connecter avec vos identifiants 
 
 ## Sujet
 
-### V1 - [Branche](https://github.com/SquidGame/TD1_SquidGame_PC/blob/V1)
+### V1
 
 L’internaute peut :
 
@@ -44,7 +44,7 @@ L’administrateur peut :
 - Valider l’ajout ou la modification d’une recette,
 - Modifier le contenu de l’édito (Page édito)
 
-### V2 - [Branche](https://github.com/SquidGame/TD1_SquidGame_PC/blob/V2)
+### V2
 
 De nouvelles fonctionnalités ont été intégrées au site :
 
