@@ -58,11 +58,11 @@ De nouvelles fonctionnalités ont été intégrées au site :
 
 **MCD**
 
-lien MCD
+![Voici le MLD :](./annexe/MLD.png)
 
 **MLD**
 
-Lien MLD
+![Voici le MCD :](./annexe/MCD.png)
 
 ## Compte
 
