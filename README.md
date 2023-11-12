@@ -58,7 +58,7 @@ De nouvelles fonctionnalités ont été intégrées au site :
 
 **MCD**
 
-![Voici le MLD :](./annexe/MLD.png)
+![Voici le MLD :]([./annexe/MLD.png](https://images-ext-1.discordapp.net/external/TLfheUzQE6kT5HhhKyPIWlkVbLI-viux4syWV0PnJO8/https/raw.githubusercontent.com/SquidGame/TD1_SquidGame_PC/main/annexes/MCD.png?width=1201&height=676))
 
 **MLD**
 
