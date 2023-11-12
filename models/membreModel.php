@@ -166,6 +166,17 @@ class MembreModel extends model {
         $stmt = $conn->prepare($query);
         $stmt->execute(array($commentId));
     }
+
+    public static function getAllIngredients(){
+        $conn = self::connexion();
+
+        $req = $conn->prepare('SELECT 
+        INGR_ID, INGR_INTITULE
+        FROM INGREDIENT');
+
+        $req->execute();
+        return $req->fetchAll();
+    }
 }
 ?>
 

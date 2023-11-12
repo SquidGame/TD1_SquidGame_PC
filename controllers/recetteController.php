@@ -24,6 +24,7 @@ class RecetteController {
             throw new Exception('Aucune recette n\'a été sélectionnée !');
         } else {
             $detailsRecipe = RecetteModel::getIngredientFromRecipes($recetteId);
+            $image = RecetteModel::getImagesByRecipe($recetteId);
             $commentaires = RecetteModel::getCommentaireByRecipe($recetteId);
             require_once './views/page/detail-recette.php';
         }
@@ -94,10 +95,13 @@ class RecetteController {
     public function modifyRecipeById(){
         $recetteId = isset($_GET['recipe_id']) ? $_GET['recipe_id'] : null;
         
+        $selectedIngredients = isset($_POST['ingredients']) ? $_POST['ingredients'] : [];
+        $recetteContenu = implode(", ", $selectedIngredients);
+
         if ($recetteId === null) {
             throw new Exception('Aucune recette n\'a été sélectionnée !');
         } else {
-            RecetteModel::modifyRecipe($_POST['RC_TITRE'], $_POST['RC_CONTENU'], $_POST['RC_RESUME'], $_POST['RC_CATEGORIE'], $recetteId);
+            RecetteModel::modifyRecipe($_POST['RC_TITRE'], $recetteContenu, $_POST['RC_RESUME'], $_POST['RC_CATEGORIE'], $recetteId);
             header('Location: index.php?action=cuisto_panel');
         }
     }
@@ -105,7 +109,8 @@ class RecetteController {
     //Fait appel à la fonction addRecipe dans le modèle pour ajouter une recette
     public function addRecipeByCuisto(){
         $recetteTitre = isset($_POST['RC_TITRE_A']) ? $_POST['RC_TITRE_A'] : null;
-        $recetteContenu = isset($_POST['RC_CONTENU_A']) ? $_POST['RC_CONTENU_A'] : null;
+        $selectedIngredients = isset($_POST['ingredients_add']) ? $_POST['ingredients_add'] : [];
+        $recetteContenu = implode(", ", $selectedIngredients);
         $recetteResume = isset($_POST['RC_RESUME_A']) ? $_POST['RC_RESUME_A'] : null;
         $recetteCategorie = isset($_POST['RC_CATEGORIE_A']) ? $_POST['RC_CATEGORIE_A'] : null;
         $recetteImage = isset($_FILES['RC_IMAGE_A']) && $_FILES['RC_IMAGE_A']['error'] == 0;
@@ -114,7 +119,7 @@ class RecetteController {
         if ($recetteTitre === null || $recetteContenu === null || $recetteResume === null || $recetteCategorie === null || !$recetteImage || $recetteAuteur === null) {
             throw new Exception('Tous les champs ne sont pas remplis !');
         } else {
-            RecetteModel::addRecipe($recetteTitre, $recetteContenu, $recetteResume, $recetteCategorie, $recetteImage, $recetteAuteur);
+            RecetteModel::addRecipe($recetteTitre, $recetteContenu, $recetteResume, $recetteCategorie, $recetteImage, $recetteAuteur, $selectedIngredients);
             header('Location: index.php?action=cuisto_panel');
         }
     }

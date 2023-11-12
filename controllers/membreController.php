@@ -15,6 +15,7 @@ class MembreController {
     public function showCuistoInformation() {
         $cuistoId = $_SESSION['id'];
         $userInfo = MembreModel::getAllRecipesFromUser($cuistoId);
+        $ingredients = MembreModel::getAllIngredients();
         require_once './views/page/cuisto-panel.php';
     }
 

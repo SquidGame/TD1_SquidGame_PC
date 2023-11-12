@@ -77,7 +77,7 @@
     <?php else: ?>
         <!-- Affichage des détails de la recette -->
         <h2><?php echo htmlspecialchars($detailsRecipe[0]['RC_TITRE']); ?></h2>
-        <p><strong>ID Recette:</strong> <?php echo htmlspecialchars($detailsRecipe[0]['RC_ID']); ?></p>
+        <img alt="recipe-image" src="../images/<?php echo $image[0]['IMG_NOM']; ?>" class="recipe-image">
         <?php foreach ($detailsRecipe as $detail): ?>
             <div class="recipe-detail">
                 <p><strong>Ingrédient:</strong> <?php echo htmlspecialchars($detail['INGR_INTITULE']); ?></p>

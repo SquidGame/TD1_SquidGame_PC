@@ -28,7 +28,7 @@
         <article class="recipe-details">
             <h2 class="recipe-title"><?= htmlspecialchars($recipe['RC_TITRE']) ?></h2>
             <p class="recipe-content"><?= htmlspecialchars($recipe['RC_CONTENU']) ?></p>
-            <p class="recipe-autor"> - Réalisé par : <?= htmlspecialchars($recipe['RC_AUTEUR']) ?></p>
+            <p class="recipe-autor"> - Réalisé par : <?= htmlspecialchars($recipe['USR_PSEUDO']) ?></p>
         </article>
     </section>
 <?php endforeach; ?>

@@ -8,8 +8,9 @@ class RecetteModel extends model {
     public static function getLatestRecipes() {
         $conn = self::connexion();
         // Ajouter une jointure avec la table des images
-        $query = "SELECT RECETTE.*, IMAGE.IMG_NOM FROM RECETTE
+        $query = "SELECT RECETTE.*, IMAGE.IMG_NOM, UTILISATEUR.USR_PSEUDO FROM RECETTE
                 LEFT JOIN IMAGE ON RECETTE.RC_IMAGE = IMAGE.IMG_ID
+                LEFT JOIN UTILISATEUR ON RECETTE.RC_AUTEUR = UTILISATEUR.USR_ID
                 WHERE RECETTE.RC_STATUS = 1
                 ORDER BY RECETTE.RC_RECETTE_DATE_INSCRIPTION DESC LIMIT 5"; // Utilisez DESC pour les plus récentes
         $stmt = $conn->prepare($query);
@@ -17,19 +18,13 @@ class RecetteModel extends model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function getImageById($imageId) {
-        $conn = self::connexion();
-        $stmt = $conn->prepare("SELECT IMG_TYPE, IMG_BIN FROM image WHERE IMG_ID = ?");
-        $stmt->execute(array($imageId));
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
     //Permets de récupérer toutes les recettes qui ont été acceptée
     public static function getAllRecipes($limit) {
         $conn = self::connexion();
         $limitInt = intval($limit); 
-        $query = "SELECT RECETTE.*, IMAGE.IMG_NOM FROM RECETTE
+        $query = "SELECT RECETTE.*, IMAGE.IMG_NOM, UTILISATEUR.USR_PSEUDO FROM RECETTE
         LEFT JOIN IMAGE ON RECETTE.RC_IMAGE = IMAGE.IMG_ID
+        LEFT JOIN UTILISATEUR ON RECETTE.RC_AUTEUR = UTILISATEUR.USR_ID
         WHERE RECETTE.RC_STATUS = 1
         ORDER BY RECETTE.RC_RECETTE_DATE_INSCRIPTION DESC LIMIT $limitInt"; 
         $stmt = $conn->prepare($query);
@@ -58,10 +53,25 @@ class RecetteModel extends model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function getImagesByRecipe($recetteId){
+        $conn = self::connexion();
+        $query = "SELECT IMG_NOM FROM IMAGE 
+        JOIN RECETTE ON RECETTE.RC_IMAGE = IMAGE.IMG_ID
+        WHERE RC_ID = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->execute(array($recetteId));
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     //Permets de récupérer les ingrédients par catégorie d'ingrédients
     public static function getRecipesByCategory($category){
         $conn = self::connexion();
-        $query = "SELECT * FROM RECETTE WHERE RC_CATEGORIE = ? AND RC_STATUS = 1";
+        $query = "SELECT RECETTE.*, IMAGE.IMG_NOM, UTILISATEUR.USR_PSEUDO FROM RECETTE
+        LEFT JOIN IMAGE ON RECETTE.RC_IMAGE = IMAGE.IMG_ID
+        LEFT JOIN UTILISATEUR ON RECETTE.RC_AUTEUR = UTILISATEUR.USR_ID
+        WHERE RECETTE.RC_STATUS = 1
+        AND RECETTE.RC_CATEGORIE = ?
+        ORDER BY RECETTE.RC_RECETTE_DATE_INSCRIPTION DESC LIMIT 5";
         $stmt = $conn->prepare($query);
         $stmt->execute(array($category));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -127,7 +137,7 @@ class RecetteModel extends model {
             RC_RESUME = ?,
             RC_CATEGORIE = ?,
             RC_RECETTE_DATE_MODIFICATION = NOW()
-            RC_STATUS = 0,
+            RC_STATUS = 0
             WHERE RC_ID = ?";
         $stmt = $conn->prepare($query);
         
@@ -140,10 +150,10 @@ class RecetteModel extends model {
         }
     }
     
-    public static function addRecipe($recetteTitre, $recetteContenu, $recetteResume, $recetteCategorie, $recetteImage, $recetteAuteur){
+    public static function addRecipe($recetteTitre, $recetteContenu, $recetteResume, $recetteCategorie, $recetteImage, $recetteAuteur, $ingredients){
         $conn = self::connexion();
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
+
         // Vérifier si un fichier a été téléchargé et est une image
         if (isset($_FILES['RC_IMAGE_A']) && $_FILES['RC_IMAGE_A']['error'] == 0) {
             $img_nom = $_FILES['RC_IMAGE_A']['name'];
@@ -185,8 +195,25 @@ class RecetteModel extends model {
             // Préparer et exécuter la requête d'insertion pour la table 'RECETTE'
             $stmt = $conn->prepare($query);
             $stmt->execute(array($recetteTitre, $recetteContenu, $recetteResume, $recetteCategorie, $img_id, $recetteAuteur));
+
+            // Après avoir inséré la recette et récupéré son ID
+            $queryMaxId = "SELECT MAX(RC_ID) AS MaxRecetteId FROM RECETTE";
+            $stmtMaxId = $conn->query($queryMaxId);
+            $maxIdRow = $stmtMaxId->fetch(PDO::FETCH_ASSOC);
+            $recetteId = $maxIdRow['MaxRecetteId'];
+
+            // Préparer la requête d'insertion pour la table 'RECETTE_INGREDIENT'
+            $insertRI = "INSERT INTO RECETTE_INGREDIENT (RI_RECETTE, RI_INGREDIENT, RI_QUANTITE) VALUES (?, ?, ?)";
+            $stmtRI = $conn->prepare($insertRI);
+
+            foreach($ingredients as $ingredientId) {
+                $quantite = '10'; 
+                $i = 0;
+                $stmtRI->execute([$recetteId-$i, $ingredientId, $quantite]);
+                $i++;
+            }
+            
             return $stmt->rowCount();
-    
         } else {
             // Si aucun fichier n'a été téléchargé ou s'il y a une erreur, enregistrer l'erreur
             error_log("Erreur de téléchargement de fichier ou aucun fichier fourni.");

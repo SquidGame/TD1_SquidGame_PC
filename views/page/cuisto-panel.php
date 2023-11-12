@@ -150,7 +150,13 @@
                     <input type="text" id="RC_TITRE_A" name="RC_TITRE_A" required>
 
                     <label for="RC_CONTENU_A">Contenu de la recette</label>
-                    <textarea id="RC_CONTENU_A" name="RC_CONTENU_A" required></textarea>
+                    <select multiple name="ingredients_add[]">
+                        <?php foreach($ingredients as $ingredient): ?>
+                            <option value="<?php echo $ingredient['INGR_ID']; ?>">
+                                <?php echo $ingredient['INGR_INTITULE']; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
 
                     <label for="RC_RESUME_A">Résumé de la recette</label>
                     <textarea id="RC_RESUME_A" name="RC_RESUME_A" required></textarea>
@@ -219,7 +225,14 @@
                                         <input type="text" id="modalTitle" name="RC_TITRE" placeholder="Titre de la recette">
 
                                         <label for="modalContent">Contenu</label>
-                                        <textarea id="modalContent" name="RC_CONTENU" placeholder="Contenu de la recette"></textarea>
+                                        <select multiple name="ingredients[]">
+                                            <?php foreach($ingredients as $ingredient): ?>
+                                                <option value="<?php echo $ingredient['INGR_ID']; ?>">
+                                                    <?php echo $ingredient['INGR_INTITULE']; ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+
 
                                         <label for="modalSummary">Résumé</label>
                                         <textarea id="modalSummary" name="RC_RESUME" placeholder="Résumé de la recette"></textarea>
