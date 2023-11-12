@@ -152,6 +152,11 @@ class RecetteController {
             header('Location: index.php?action=recipe_details&recipe_id='.$recetteId);
         }
     }
+
+    public function showAllRecipeTitle(){
+        $recipesTitle = RecetteModel::getAllRecipesTitle();
+        require('./views/required/header.php');
+    }
 }
 
 ?>

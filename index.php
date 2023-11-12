@@ -141,6 +141,6 @@ require('./controllers/membreController.php');
         
     } else {
         $recette = new recetteController();
-        $recettes = $recette->showLatestRecipes();    
+        $recettes = $recette->showLatestRecipes();   
     }
 ?>

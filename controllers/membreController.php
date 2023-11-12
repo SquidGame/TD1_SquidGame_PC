@@ -96,6 +96,8 @@ class MembreController {
         MembreModel::deleteUserInformation($userId, $pseudo);
         header('Location: ../views/page/logout.php');
     }
+
+    
 }
 
 ?>

@@ -12,42 +12,104 @@
                 <span id="fleche" class="arrow-down fas fa-angle-down"></span>
             </a>
             <ul class="submenu" id="submenu">
-                <li><a class="hover:text-[#ff3d00]" href="#" onclick="openModal('categorie')">Catégorie</a></li>
+                <li><a class="hover:text-[#ff3d00]" href="#" onclick="openModalCate()">Catégorie</a></li>
+                <li><a class="hover:text-[#ff3d00]" href="#" onclick="openModalName()">Titre</a></li>
+                <li><a class="hover:text-[#ff3d00]" href="#" onclick="openModalIng()">Ingrédients</a></li>
             </ul>
             
                 <!-- Modales -->
                 <div id="categorieModal" class="modal-filtre">
                     <div class="modal-content-filtre">
-                        <span class="close-filtre" onclick="closeModal('categorie')">&times;</span>
+                        <span class="close-filtre" onclick="closeModalCate()">&times;</span>
                         <form action="../index.php?action=recipe_by_categorie" method="post">
-                            <label for="categorie">Catégorie</label>
+                            <label for="categorie">Catégorie :</label>
                             <select name="category" id="categorie">
                                 <option value="1">Entrée</option>
                                 <option value="2">Plat</option>
                                 <option value="3">Dessert</option>
                             </select>
-                            <input type="submit" value="Valider"/>
+                            <input type="submit" value="| Valider"/>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="nameModal" class="modal-filtre">
+                    <div class="modal-content-filtre">
+                        <span class="close-filtre" onclick="closeModalName()">&times;</span>
+                        <form action="../index.php?action=recipe_by_name" method="post">
+                            <label for="titre">Titre :</label>
+                            <select>
+                                <?php foreach($recipesTitle as $recipeTitle): ?>
+                                    <option value="<?php echo $recipeTitle['RC_ID']; ?>"><?php echo $recipeTitle['RC_TITRE']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <input type="submit" value="| Valider"/>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="ingredientModal" class="modal-filtre">
+                    <div class="modal-content-filtre">
+                        <span class="close-filtre" onclick="closeModalIng()">&times;</span>
+                        <form action="../index.php?action=recipe_by_ingredient" method="post">
+                            <label for="ingredient">Ingredient :</label>
+                            <select>
+                                <?php foreach($ingredientsName as $ingredientName): ?>
+                                    <option value="<?php echo $ingredientName['INGR_ID']; ?>"><?php echo $ingredientName['INGR_INTITULE']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <input type="submit" value="| Valider"/>
                         </form>
                     </div>
                 </div>
 
                 <script>
-                    // Fonction pour ouvrir la modale
-                    function openModal(category) {
-                        var modal = document.getElementById(category + 'Modal');
-                        modal.style.display = 'block';
+                    let openModalCate = () => {
+                        document.getElementById('categorieModal').style.display = 'block';
+                        document.getElementById('ingredientModal').style.display = 'none';
+                        document.getElementById('nameModal').style.display = 'none';
+
                     }
 
-                    // Fonction pour fermer la modale
-                    function closeModal(category) {
-                        var modal = document.getElementById(category + 'Modal');
-                        modal.style.display = 'none';
+                    let closeModalCate = () => {
+                        document.getElementById('categorieModal').style.display = 'none';
                     }
 
-                    // Fermer la modale si l'utilisateur clique en dehors de la modale
-                    window.onclick = function (event) {
-                        if (event.target.className === 'modal') {
-                            event.target.style.display = 'none';
+                    let openModalName = () => {
+                        document.getElementById('nameModal').style.display = 'block';
+                        document.getElementById('categorieModal').style.display = 'none';
+                        document.getElementById('ingredientModal').style.display = 'none';
+                    }
+
+                    let closeModalName = () => {
+                        document.getElementById('nameModal').style.display = 'none';
+                    }
+
+                    let openModalIng = () => {
+                        document.getElementById('ingredientModal').style.display = 'block';
+                        document.getElementById('nameModal').style.display = 'none';
+                        document.getElementById('categorieModal').style.display = 'none';
+                    }
+
+                    let closeModalIng = () => {
+                        document.getElementById('ingredientModal').style.display = 'none';
+                    }
+
+                    window.onclick = (event) => {
+                        if (event.target == document.getElementById('categorieModal')) {
+                            document.getElementById('categorieModal').style.display = 'none';
+                        }
+                    }
+
+                    window.onclick = (event) => {
+                        if (event.target == document.getElementById('nameModal')) {
+                            document.getElementById('nameModal').style.display = 'none';
+                        }
+                    }
+
+                    window.onclick = (event) => {
+                        if (event.target == document.getElementById('ingredientModal')) {
+                            document.getElementById('ingredientModal').style.display = 'none';
                         }
                     }
                 </script>

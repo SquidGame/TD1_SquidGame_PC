@@ -60,16 +60,24 @@
         </form>
 
         <button id="delete-acc" type="submit" onclick="openModalDeleteAcc()">Supprimer le compte</button>
-
-        <form action="../index.php?action=delete_account" method="post"> 
-            <div class="modal-delete-acc">
+        
+        <div class="modal-delete-acc">
+            <form action="../index.php?action=delete_account" method="post"> 
+            
                 <p>Attention, cette action est irréversible.</p>
                 <p>Si vous supprimez votre compte, vous ne pourrez plus vous connecter.</p>
                 <p>Êtes-vous sûr de vouloir supprimer votre compte ?</p>
                 <button id="confirm-delete" type="submit">Oui</button>
-                <button id="cancel-delete" type="submit">Non</button</a>
-            </div>
-            <script>
+            </form>
+            <button id="cancel-delete">Non</button</a>
+        </div>
+       
+    <?php else: ?>
+        <p>Informations utilisateur non disponibles.</p>
+    <?php endif; ?>
+</div>
+
+<script>
                 let modal = document.querySelector('.modal-delete-acc');
                 let confirmDelete = document.querySelector('#confirm-delete');
                 let cancelDelete = document.querySelector('#cancel-delete');
@@ -93,12 +101,6 @@
                     }
                 });
             </script>
-        </form>
-    <?php else: ?>
-        <p>Informations utilisateur non disponibles.</p>
-    <?php endif; ?>
-</div>
-
 
 <?php $content = ob_get_clean(); 
 require('./views/template.php') ?>

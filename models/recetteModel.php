@@ -238,6 +238,14 @@ class RecetteModel extends model {
             return "Erreur lors de l'ajout du commentaire.";
         }
     }
+
+    public static function getAllRecipesTitle(){
+        $conn = self::connexion();
+        $query = "SELECT RC_ID, RC_TITRE FROM RECETTE WHERE RC_STATUS = 1";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 

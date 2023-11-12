@@ -86,20 +86,23 @@
             </div>
         <?php endforeach; ?>
     <?php endif; ?>
-        <div id="chat-container">
-            <h3>Commentaire en direct</h3>
-            <div id="chat-box">
-                <?php if (isset($commentaires)): ?>
-                    <?php foreach ($commentaires as $comment): ?>
-                        <p><strong><?php echo htmlspecialchars($comment['COM_USER']); ?></strong>: <?php echo htmlspecialchars($comment['COM_CONTENU']); ?></p>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
+    <div id="chat-container">
+        <h3>Commentaire en direct</h3>
+        <div id="chat-box">
+            <?php if (isset($commentaires)): ?>
+                <?php foreach ($commentaires as $comment): ?>
+                    <p><strong><?php echo htmlspecialchars($comment['COM_USER']); ?></strong>: <?php echo htmlspecialchars($comment['COM_CONTENU']); ?></p>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+
+        <?php if(isset($_SESSION['id']) && $_SESSION['id'] != null): ?>
             <form method="post" action="index.php?action=add_commentaire&recipe_id=<?php echo $recetteId; ?>">
                 <input name="contenu" type="text" id="chat-message" placeholder="Tapez votre message ici..." />
                 <button id="send-message" type="submit">Envoyer</button>
             </form>
-        </div>
+        <?php endif; ?>
+    </div>
 </div>
 
 <?php $content = ob_get_clean(); 
