@@ -6,6 +6,7 @@ require('./controllers/loginController.php');
 require('./controllers/membreController.php');
 
     if(isset($_GET['action'])) {
+        //Vérifie si l'utilisateur veut se connecter avec un compte déjà existant
         if($_GET['action'] == "userlogin") {
             if (isset($_POST['username']) && isset($_POST['password'])) {
                 $member = new loginController();
@@ -15,6 +16,7 @@ require('./controllers/membreController.php');
             }
         }
 
+        //Vérifie si l'utilisateur veut se créer un nouveau compte
         else if($_GET['action'] == "userregister"){
             if (isset($_POST['username']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['email'])) {
                 if($_POST['password'] == $_POST['password2']){
@@ -28,6 +30,7 @@ require('./controllers/membreController.php');
             }
         }
 
+        //Vérifie les autres action possible par l'utilisateur depuis l'index.php
         else if($_GET['action'] == "allrecipes") {
             $allRecipe = new recetteController();
             $allRecipes = $allRecipe->showAllRecipes();
