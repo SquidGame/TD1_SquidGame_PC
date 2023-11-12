@@ -12,7 +12,7 @@ class RecetteModel extends model {
                 LEFT JOIN IMAGE ON RECETTE.RC_IMAGE = IMAGE.IMG_ID
                 LEFT JOIN UTILISATEUR ON RECETTE.RC_AUTEUR = UTILISATEUR.USR_ID
                 WHERE RECETTE.RC_STATUS = 1
-                ORDER BY RECETTE.RC_RECETTE_DATE_INSCRIPTION DESC LIMIT 5"; // Utilisez DESC pour les plus récentes
+                ORDER BY RECETTE.RC_RECETTE_DATE_INSCRIPTION DESC LIMIT 4"; // Utilisez DESC pour les plus récentes
         $stmt = $conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

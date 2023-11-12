@@ -27,7 +27,7 @@
         <img alt="recipe-image" src="../images/<?php echo $recipe['IMG_NOM']; ?>" class="recipe-image">
         <article class="recipe-details">
             <h2 class="recipe-title"><?= htmlspecialchars($recipe['RC_TITRE']) ?></h2>
-            <p class="recipe-content"><?= htmlspecialchars($recipe['RC_CONTENU']) ?></p>
+            <p class="recipe-content"><?= htmlspecialchars($recipe['RC_RESUME']) ?></p>
             <p class="recipe-autor"> - Réalisé par : <?= htmlspecialchars($recipe['USR_PSEUDO']) ?></p>
         </article>
     </section>
