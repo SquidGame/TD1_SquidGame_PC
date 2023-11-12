@@ -52,6 +52,7 @@
                     }
                 </script>
         </li>
+        <li><a> | </a></li>
         <?php if (isset($_SESSION['type']) && $_SESSION['type'] == 'Administrateur'): ?>
             <li><a class="hover:text-[#ff3d00]" href="../index.php?action=admin_panel">Admin</a></li>
             <li><a class="hover:text-[#ff3d00]" href="../index.php?action=cuisto_panel">Cuisto</a></li>
@@ -90,7 +91,7 @@
                     <?php unset($_SESSION['error_message']); // Effacer le message après l'affichage ?>
                 </div>
             <?php endif; ?>
-            
+
             <!-- Modal body -->
             <form id="login-form" method="post" action="index.php?action=userlogin">
                 <div class="mb-4">

@@ -1,16 +1,11 @@
 <?php ob_start(); ?>
 
-<style>
-    /* Votre style CSS ici */
-</style>
-
 <div class="admin-panel">
     <h1>Panneau d'administration</h1>
     
     <section>
         <h2>Recettes en attente de confirmation</h2>
         <table>
-            <!-- En-têtes de votre tableau -->
             <tbody>
             <?php if(is_array($recettes)): ?>
                     <?php foreach ($recettes as $recette): ?>
@@ -58,7 +53,6 @@
     <section>
         <h2>Commentaires en attente de confirmation</h2>
         <table>
-            <!-- En-têtes de votre tableau -->
             <tbody>
             <?php if(is_array($commentaires)): ?>
                 <?php foreach ($commentaires as $commentaire): ?>
@@ -101,7 +95,6 @@
     <section>
         <h2>Gestion des comptes utilisateurs</h2>
         <table>
-            <!-- En-têtes de votre tableau -->
             <tbody>
             <?php if(is_array($users)): ?>
                 <?php foreach ($users as $user): ?>

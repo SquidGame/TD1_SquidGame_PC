@@ -38,15 +38,15 @@ require('./controllers/membreController.php');
             $panel->showMemberInformation();
         }
 
-        else if($_GET['action'] == "cuisto_panel") {
+        else if($_GET['action'] == "cuisto_panel" && $_SESSION['type'] == "Cuisto" || $_GET['action'] == "cuisto_panel" && $_SESSION['type'] == "Administrateur") {
             $panel = new MembreController();
             $panel->showCuistoInformation();
-        }
+        } 
 
-        else if($_GET['action'] == "admin_panel") {
+        else if($_GET['action'] == "admin_panel" && $_SESSION['type'] == "Administrateur") {
             $panel = new MembreController();
             $panel->showAdminPanel();
-        }
+        } 
 
         else if($_GET['action'] == "recipe_details") {
             $allRecipe = new recetteController();
