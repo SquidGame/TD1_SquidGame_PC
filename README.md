@@ -56,13 +56,13 @@ De nouvelles fonctionnalités ont été intégrées au site :
 
 ### MCD / MLD
 
-**MCD**
-
-lien MCD
-
 **MLD**
 
-Lien MLD
+![Voici le MLD :](/annexes/MLD.png)
+
+**MCD**
+
+![Voici le MCD :](/annexes/MCD.png)
 
 ## Compte
 
